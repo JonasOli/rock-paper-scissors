@@ -9,8 +9,8 @@ const StyledHeader = styled.header`
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
-  margin: auto;
   width: ${"min(100%, 70rem)"};
+  align-self: center;
 `;
 
 const Header = () => {

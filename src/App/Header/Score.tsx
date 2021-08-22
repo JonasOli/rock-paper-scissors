@@ -16,7 +16,7 @@ const StyledScore = styled.div`
     font-size: 1.2rem;
     color: var(--scoreText);
     text-transform: uppercase;
-    letter-spacing: 0.1rem;
+    letter-spacing: 1px;
   }
 
   .score-count {

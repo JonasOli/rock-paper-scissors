@@ -16,10 +16,11 @@ const StyledPlayButton = styled.button<IProps>`
   box-sizing: content-box;
   border: 15px solid transparent;
   border-radius: 50%;
+  grid-area: playButton;
 
   &:active {
     outline: none;
-    transform: scale(.95);
+    transform: scale(0.95);
   }
 
   ${(props) => {
@@ -27,16 +28,31 @@ const StyledPlayButton = styled.button<IProps>`
       return css`
         border-color: var(--paperGradient2);
         box-shadow: ${boxShadow("var(--paperGradient1)")};
+        grid-area: playButton1;
+      `;
+    }
+    if (props.buttonType === PlayButtonType.ROCK) {
+      return css`
+        border-color: var(--rockGradient2);
+        box-shadow: ${boxShadow("var(--rockGradient1)")};
+        grid-area: playButton2;
+      `;
+    }
+    if (props.buttonType === PlayButtonType.SCISSOR) {
+      return css`
+        border-color: var(--scissorsGradient2);
+        box-shadow: ${boxShadow("var(--scissorsGradient1)")};
+        grid-area: playButton3;
       `;
     }
   }}
 `;
 
 interface IProps {
-  buttonType?: PlayButtonType;
+  buttonType: PlayButtonType;
 }
 
-const PlayButton = ({ buttonType = PlayButtonType.PAPER }: IProps) => {
+const PlayButton = ({ buttonType }: IProps) => {
   return (
     <StyledPlayButton {...{ buttonType }}>
       <img src="./img/icon-paper.svg" alt="paper icon" />
