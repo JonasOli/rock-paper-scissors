@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import PlayButton from "../../components/PlayButton";
 import PlayButtonType from "../../Helper/PlayButtonType";
+import PlayButton from "./PlayButton";
 
 const StyledGameBoard = styled.div`
   display: grid;
+  grid-column-gap: ${"clamp(1rem, 5vw, 7rem)"};
+  grid-row-gap: ${"clamp(1rem, 5vw, 3rem)"};
+  place-items: center;
+  margin: auto;
   grid-template-areas:
-    "playButton1 . playButton2"
-    ". playButton3 .";
+    "paperButton rockButton"
+    "scissorsButton scissorsButton";
 `;
 
 const GameBoard = () => {
@@ -15,7 +19,7 @@ const GameBoard = () => {
     <StyledGameBoard>
       <PlayButton buttonType={PlayButtonType.ROCK} />
       <PlayButton buttonType={PlayButtonType.PAPER} />
-      <PlayButton buttonType={PlayButtonType.SCISSOR} />
+      <PlayButton buttonType={PlayButtonType.SCISSORS} />
     </StyledGameBoard>
   );
 };

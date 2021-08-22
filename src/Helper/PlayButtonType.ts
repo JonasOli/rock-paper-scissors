@@ -1,7 +1,7 @@
 enum PlayButtonType {
   ROCK,
   PAPER,
-  SCISSOR,
+  SCISSORS,
 }
 
 export default PlayButtonType;

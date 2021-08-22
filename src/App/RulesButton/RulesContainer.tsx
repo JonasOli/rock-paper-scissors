@@ -5,23 +5,32 @@ const StyledRulesContainer = styled.div`
   background-color: #fff;
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   flex-direction: column;
 
   h2 {
     text-transform: uppercase;
     font-weight: 700;
     color: var(--darkText);
-    font-size: ${"clamp(2.2rem, 2.5vw, 3rem)"};
+    font-size: 3rem;
+    margin-bottom: 4rem;
   }
 
   button {
     all: unset;
+    width: 10rem;
+    height: fit-content;
+    cursor: pointer;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 5rem;
   }
 
   @media only screen and (min-width: 48em) {
@@ -30,9 +39,22 @@ const StyledRulesContainer = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 0 3rem;
+    padding: 1.5rem 3rem;
     border-radius: 5px;
-    align-items: flex-start;
+    align-items: center;
+    gap: 2rem;
+
+    h2 {
+      align-self: flex-start;
+      margin-bottom: 0;
+    }
+
+    button {
+      top: 1.8rem;
+      right: 2.8rem;
+      width: fit-content;
+      padding: 1rem;
+    }
   }
 `;
 

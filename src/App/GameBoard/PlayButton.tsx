@@ -7,7 +7,8 @@ const boxShadow = (color: string): string => {
 };
 
 const StyledPlayButton = styled.button<IProps>`
-  padding: 2rem 2.5rem;
+  width: ${"clamp(8.5rem, 10vw, 12rem)"};
+  height: ${"clamp(8.5rem, 10vw, 12rem)"};
   cursor: pointer;
   background-color: var(--backgroundColor);
   display: flex;
@@ -16,7 +17,6 @@ const StyledPlayButton = styled.button<IProps>`
   box-sizing: content-box;
   border: 15px solid transparent;
   border-radius: 50%;
-  grid-area: playButton;
 
   &:active {
     outline: none;
@@ -28,21 +28,21 @@ const StyledPlayButton = styled.button<IProps>`
       return css`
         border-color: var(--paperGradient2);
         box-shadow: ${boxShadow("var(--paperGradient1)")};
-        grid-area: playButton1;
+        grid-area: paperButton;
       `;
     }
     if (props.buttonType === PlayButtonType.ROCK) {
       return css`
         border-color: var(--rockGradient2);
         box-shadow: ${boxShadow("var(--rockGradient1)")};
-        grid-area: playButton2;
+        grid-area: rockButton;
       `;
     }
-    if (props.buttonType === PlayButtonType.SCISSOR) {
+    if (props.buttonType === PlayButtonType.SCISSORS) {
       return css`
         border-color: var(--scissorsGradient2);
         box-shadow: ${boxShadow("var(--scissorsGradient1)")};
-        grid-area: playButton3;
+        grid-area: scissorsButton;
       `;
     }
   }}
@@ -53,9 +53,23 @@ interface IProps {
 }
 
 const PlayButton = ({ buttonType }: IProps) => {
+  function getImageAtributes(): { link: string; alt: string } {
+    switch (buttonType) {
+      case PlayButtonType.PAPER:
+        return { link: "icon-paper.svg", alt: "paper play button" };
+      case PlayButtonType.ROCK:
+        return { link: "icon-rock.svg", alt: "rock play button" };
+      case PlayButtonType.SCISSORS:
+        return { link: "icon-scissors.svg", alt: "scissors play button" };
+    }
+  }
+
   return (
     <StyledPlayButton {...{ buttonType }}>
-      <img src="./img/icon-paper.svg" alt="paper icon" />
+      <img
+        src={`./img/${getImageAtributes().link}`}
+        alt={getImageAtributes().alt}
+      />
     </StyledPlayButton>
   );
 };
