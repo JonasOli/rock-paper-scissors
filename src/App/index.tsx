@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import AppProvider from "./Context/AppContext";
 import GameBoard from "./GameBoard";
 import Header from "./Header";
 import RulesButton from "./RulesButton";
@@ -15,11 +16,13 @@ const StyledApp = styled.main`
 
 function App() {
   return (
-    <StyledApp>
-      <Header />
-      <GameBoard />
-      <RulesButton />
-    </StyledApp>
+    <AppProvider>
+      <StyledApp>
+        <Header />
+        <GameBoard />
+        <RulesButton />
+      </StyledApp>
+    </AppProvider>
   );
 }
 
