@@ -1,4 +1,4 @@
-import React from "react";
+import React, { HTMLProps } from "react";
 import styled, { css } from "styled-components";
 import PlayButtonType from "../../Helper/PlayButtonType";
 
@@ -58,13 +58,14 @@ const StyledPlayButton = styled.button<IProps>`
   }}
 `;
 
-interface IProps {
+interface IProps extends HTMLProps<HTMLButtonElement> {
   buttonType: PlayButtonType;
 }
 
-const PlayButton = ({ buttonType }: IProps) => {
+const PlayButton = ({ buttonType, ...props }: IProps) => {
   return (
-    <StyledPlayButton {...{ buttonType }}>
+    // @ts-ignore
+    <StyledPlayButton {...{ buttonType }} {...props}>
       <img
         src={`./img/${playButtonAttributes[buttonType].imageLink}`}
         alt={playButtonAttributes[buttonType].imageAlt}

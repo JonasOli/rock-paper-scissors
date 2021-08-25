@@ -1,26 +1,19 @@
-import React from "react";
-import styled from "styled-components";
-import PlayButtonType from "../../Helper/PlayButtonType";
-import PlayButton from "./PlayButton";
-
-const StyledGameBoard = styled.div`
-  display: grid;
-  grid-column-gap: ${"clamp(1rem, 5vw, 7rem)"};
-  grid-row-gap: ${"clamp(1rem, 5vw, 3rem)"};
-  place-items: center;
-  margin: auto;
-  grid-template-areas:
-    "paperButton rockButton"
-    "scissorsButton scissorsButton";
-`;
+import React, { useContext } from "react";
+import { useTransition } from "react-spring";
+import { AppContext } from "../Context/AppContext";
+import Choices from "./Choices";
+import Result from "./Result";
 
 const GameBoard = () => {
-  return (
-    <StyledGameBoard>
-      <PlayButton buttonType={PlayButtonType.ROCK} />
-      <PlayButton buttonType={PlayButtonType.PAPER} />
-      <PlayButton buttonType={PlayButtonType.SCISSORS} />
-    </StyledGameBoard>
+  const { showResult } = useContext(AppContext);
+  const transition = useTransition(showResult, {
+    from: { x: 0, y: 100, opacity: 0 },
+    enter: { x: 0, y: 0, opacity: 1 },
+    leave: { x: 0, y: 100, opacity: 0 },
+  });
+
+  return transition((style, item) =>
+    item ? <Result style={style} /> : <Choices style={style} />
   );
 };
 

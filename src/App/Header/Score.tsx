@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { AppContext } from "../Context/AppContext";
 
 const StyledScore = styled.div`
   background-color: var(--backgroundColor);
@@ -27,15 +28,13 @@ const StyledScore = styled.div`
   }
 `;
 
-interface IProps {
-  scoreCount: number;
-}
+const Score = () => {
+  const { score } = useContext(AppContext);
 
-const Score = ({ scoreCount }: IProps) => {
   return (
     <StyledScore>
       <h2 className="score-title">Score</h2>
-      <div className="score-count">{scoreCount}</div>
+      <div className="score-count">{score}</div>
     </StyledScore>
   );
 };

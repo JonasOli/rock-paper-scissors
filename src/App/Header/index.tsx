@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <Title />
-      <Score scoreCount={12} />
+      <Score />
     </StyledHeader>
   );
 };

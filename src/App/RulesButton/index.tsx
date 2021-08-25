@@ -7,12 +7,12 @@ const SyledRules = styled.button`
   width: fit-content;
   font-size: 1.6rem;
   letter-spacing: 1px;
-  padding: 0.8rem 3.2rem;
+  padding: 0.8rem 4rem;
   cursor: pointer;
   text-transform: uppercase;
   background-color: transparent;
   border: 2px solid var(--headerOutline);
-  border-radius: 5px;
+  border-radius: 10px;
   color: #fff;
   align-self: center;
 `;
