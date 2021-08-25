@@ -9,7 +9,8 @@ const GameBoard = () => {
   const transition = useTransition(showResult, {
     from: { x: 0, y: 100, opacity: 0 },
     enter: { x: 0, y: 0, opacity: 1 },
-    leave: { x: 0, y: 100, opacity: 0 },
+    leave: { x: 0, y: 100, display: "none" },
+
   });
 
   return transition((style, item) =>
