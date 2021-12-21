@@ -17,21 +17,21 @@ const StyledGameBoard = animated(styled.div`
 `);
 
 const Choices = ({ style }: { style: any }) => {
-  const { setShowResult } = useContext(AppContext);
+  const { play } = useContext(AppContext);
 
   return (
     <StyledGameBoard style={style}>
       <PlayButton
         buttonType={PlayButtonType.ROCK}
-        onClick={() => setShowResult(true)}
+        onClick={() => play(PlayButtonType.ROCK)}
       />
       <PlayButton
         buttonType={PlayButtonType.PAPER}
-        onClick={() => setShowResult(true)}
+        onClick={() => play(PlayButtonType.PAPER)}
       />
       <PlayButton
         buttonType={PlayButtonType.SCISSORS}
-        onClick={() => setShowResult(true)}
+        onClick={() => play(PlayButtonType.SCISSORS)}
       />
     </StyledGameBoard>
   );

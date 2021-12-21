@@ -13,8 +13,8 @@ const GameBoard = () => {
 
   });
 
-  return transition((style, item) =>
-    item ? <Result style={style} /> : <Choices style={style} />
+  return transition((style, wasPlayed) =>
+    wasPlayed ? <Result style={style} /> : <Choices style={style} />
   );
 };
 
