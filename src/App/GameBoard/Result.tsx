@@ -5,11 +5,24 @@ import PlayButtonType from "../../Helper/PlayButtonType";
 import { AppContext } from "../Context/AppContext";
 import PlayButton from "./PlayButton";
 
-const StyledResult = styled(animated.div)`
+const StyledResultWrapper = styled(animated.div)`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 0;
 `;
 
-const Picks = styled.div``;
+const Picks = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+`;
 
 const PlayAgainButton = styled.button`
   margin-top: auto;
@@ -57,23 +70,24 @@ const Result = ({ style }: { style: any }) => {
   };
 
   return (
-    <StyledResult style={style}>
+    <StyledResultWrapper style={style}>
       <Picks>
         <h2>Your picked</h2>
         {renderPick(yourPick)}
       </Picks>
 
-      <h2>{resultText}</h2>
+      <div>
+        <h2>{resultText}</h2>
+        <PlayAgainButton onClick={() => setShowResult(false)}>
+          Play again
+        </PlayAgainButton>
+      </div>
 
       <Picks>
         <h2>The house picked</h2>
         {renderPick(pcPick)}
       </Picks>
-
-      <PlayAgainButton onClick={() => setShowResult(false)}>
-        Play again
-      </PlayAgainButton>
-    </StyledResult>
+    </StyledResultWrapper>
   );
 };
 
