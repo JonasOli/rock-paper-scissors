@@ -7,15 +7,6 @@ const boxShadow = (color: string): string => {
 };
 
 const playButtonAttributes = {
-  [PlayButtonType.PAPER]: {
-    style: css`
-      border-color: var(--paperGradient2);
-      box-shadow: ${boxShadow("var(--paperGradient1)")};
-      grid-area: paperButton;
-    `,
-    imageLink: "icon-paper.svg",
-    imageAlt: "paper play button",
-  },
   [PlayButtonType.ROCK]: {
     style: css`
       border-color: var(--rockGradient2);
@@ -24,6 +15,15 @@ const playButtonAttributes = {
     `,
     imageLink: "icon-rock.svg",
     imageAlt: "rock play button",
+  },
+  [PlayButtonType.PAPER]: {
+    style: css`
+      border-color: var(--paperGradient2);
+      box-shadow: ${boxShadow("var(--paperGradient1)")};
+      grid-area: paperButton;
+    `,
+    imageLink: "icon-paper.svg",
+    imageAlt: "paper play button",
   },
   [PlayButtonType.SCISSORS]: {
     style: css`
@@ -54,7 +54,7 @@ const StyledPlayButton = styled.button<IProps>`
   }
 
   ${(props) => {
-    return playButtonAttributes[props.buttonType].style;
+    if (!!props.buttonType) return playButtonAttributes[props.buttonType].style;
   }}
 `;
 
@@ -62,16 +62,14 @@ interface IProps extends HTMLProps<HTMLButtonElement> {
   buttonType: PlayButtonType;
 }
 
-const PlayButton = ({ buttonType, ...props }: IProps) => {
-  return (
-    // @ts-ignore
-    <StyledPlayButton {...{ buttonType }} {...props}>
-      <img
-        src={`./img/${playButtonAttributes[buttonType].imageLink}`}
-        alt={playButtonAttributes[buttonType].imageAlt}
-      />
-    </StyledPlayButton>
-  );
-};
+const PlayButton = ({ buttonType, ...props }: IProps) => (
+  // @ts-ignore
+  <StyledPlayButton {...{ buttonType }} {...props}>
+    <img
+      src={`./img/${playButtonAttributes[buttonType]?.imageLink}`}
+      alt={playButtonAttributes[buttonType]?.imageAlt}
+    />
+  </StyledPlayButton>
+);
 
 export default PlayButton;
