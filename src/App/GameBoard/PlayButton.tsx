@@ -47,6 +47,7 @@ const StyledPlayButton = styled.button<IProps>`
   box-sizing: content-box;
   border: 15px solid transparent;
   border-radius: 50%;
+  transform: scale(1);
 
   &:active {
     outline: none;
@@ -56,15 +57,41 @@ const StyledPlayButton = styled.button<IProps>`
   ${(props) => {
     if (!!props.buttonType) return playButtonAttributes[props.buttonType].style;
   }}
+
+  ${(props) => {
+    if (props.winner) {
+      return css`
+        animation: pulse-effect 2s infinite;
+      `;
+    }
+  }}
+
+  @keyframes pulse-effect {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 30px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+  }
 `;
 
 interface IProps extends HTMLProps<HTMLButtonElement> {
   buttonType: PlayButtonType;
+  winner?: boolean;
 }
 
-const PlayButton = ({ buttonType, ...props }: IProps) => (
+const PlayButton = ({ buttonType, winner, ...props }: IProps) => (
   // @ts-ignore
-  <StyledPlayButton {...{ buttonType }} {...props}>
+  <StyledPlayButton {...{ buttonType, winner }} {...props}>
     <img
       src={`./img/${playButtonAttributes[buttonType]?.imageLink}`}
       alt={playButtonAttributes[buttonType]?.imageAlt}
