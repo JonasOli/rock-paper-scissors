@@ -4,6 +4,7 @@ import styled from "styled-components";
 import PlayButtonType from "../../Helper/PlayButtonType";
 import Winner from "../../Helper/Winner";
 import { AppContext } from "../Context/AppContext";
+import EmptyButton from "./EmptyButton";
 import PlayButton from "./PlayButton";
 
 const StyledResultWrapper = styled(animated.div)`
@@ -78,16 +79,21 @@ const PlayAgainButton = styled.button`
 const Result = ({ style }: { style: any }) => {
   const { yourPick, pcPick, winner, resetValues } = useContext(AppContext);
 
-  function renderPick(buttonType: PlayButtonType | null): JSX.Element {
+  function renderPick(
+    buttonType: PlayButtonType | null,
+    winner: boolean
+  ): JSX.Element {
     switch (buttonType) {
       case PlayButtonType.PAPER:
-        return <PlayButton buttonType={PlayButtonType.PAPER} />;
+        return <PlayButton buttonType={PlayButtonType.PAPER} {...{ winner }} />;
       case PlayButtonType.ROCK:
-        return <PlayButton buttonType={PlayButtonType.ROCK} />;
+        return <PlayButton buttonType={PlayButtonType.ROCK} {...{ winner }} />;
       case PlayButtonType.SCISSORS:
-        return <PlayButton buttonType={PlayButtonType.SCISSORS} />;
+        return (
+          <PlayButton buttonType={PlayButtonType.SCISSORS} {...{ winner }} />
+        );
       default:
-        return <div>empty</div>;
+        return <EmptyButton />;
     }
   }
 
@@ -105,7 +111,7 @@ const Result = ({ style }: { style: any }) => {
   return (
     <StyledResultWrapper style={style}>
       <Picks>
-        {renderPick(yourPick)}
+        {renderPick(yourPick, winner === Winner.PLAYER)}
         <h2>Your picked</h2>
       </Picks>
 
@@ -123,7 +129,7 @@ const Result = ({ style }: { style: any }) => {
       )}
 
       <Picks>
-        {renderPick(pcPick)}
+        {renderPick(pcPick, winner === Winner.MACHINE)}
         <h2>The house picked</h2>
       </Picks>
     </StyledResultWrapper>
