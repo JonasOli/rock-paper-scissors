@@ -31,10 +31,11 @@ const AppProvider = ({ children }: { children: any }) => {
 
   useEffect(() => {
     if (!!pcPick) checkResult();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pcPick]);
 
   function play(choice: PlayButtonType): void {
-    const randomChoiceByPC = randomIntFromInterval(0, 2);
+    const randomChoiceByPC = randomIntFromInterval(1, 3);
 
     setYourPick(choice);
     setShowResult(true);
