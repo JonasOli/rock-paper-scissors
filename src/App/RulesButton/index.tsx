@@ -15,6 +15,11 @@ const SyledRules = styled.button`
   border-radius: 10px;
   color: #fff;
   align-self: center;
+
+  @media only screen and (min-width: 48em) {
+    margin: 0;
+    margin-left: auto;
+  }
 `;
 
 const RulesButton = () => {
