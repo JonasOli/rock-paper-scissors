@@ -91,7 +91,7 @@ interface IProps extends HTMLProps<HTMLButtonElement> {
 
 const PlayButton = ({ buttonType, winner, ...props }: IProps) => (
   // @ts-ignore
-  <StyledPlayButton {...{ buttonType, winner }} {...props}>
+  <StyledPlayButton {...{ buttonType, winner }} {...props} data-testid="play-button">
     <img
       src={`./img/${playButtonAttributes[buttonType]?.imageLink}`}
       alt={playButtonAttributes[buttonType]?.imageAlt}

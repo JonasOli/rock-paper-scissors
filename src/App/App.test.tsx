@@ -1,9 +1,13 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from '.';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import App from ".";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("Main page", () => {
+  it("should display three play buttons", async () => {
+    render(<App />);
+
+    const playButtons = await screen.findAllByTestId("play-button");
+
+    expect(playButtons.length).toEqual(3);
+  });
 });
