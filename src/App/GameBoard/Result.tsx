@@ -112,12 +112,12 @@ const Result = ({ style }: { style: any }) => {
     <StyledResultWrapper style={style}>
       <Picks>
         {renderPick(yourPick, winner === Winner.PLAYER)}
-        <h2>Your picked</h2>
+        <h2>You picked</h2>
       </Picks>
 
       {!!winner && (
         <ResultsContainer>
-          <h2>{getResultText()}</h2>
+          <h2 data-testid="result-text">{getResultText()}</h2>
           <PlayAgainButton
             onClick={() => {
               resetValues();

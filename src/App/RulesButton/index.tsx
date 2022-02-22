@@ -27,7 +27,12 @@ const RulesButton = () => {
 
   return (
     <>
-      <SyledRules onClick={() => setRulesContainerOpen(true)}>Rules</SyledRules>
+      <SyledRules
+        onClick={() => setRulesContainerOpen(true)}
+        data-testid="rules-button"
+      >
+        Rules
+      </SyledRules>
       {rulesContainerOpen && (
         <RulesContainer closeContainer={() => setRulesContainerOpen(false)} />
       )}

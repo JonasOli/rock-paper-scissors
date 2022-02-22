@@ -64,7 +64,7 @@ interface IProps {
 
 const RulesContainer = ({ closeContainer }: IProps) => {
   return (
-    <StyledRulesContainer>
+    <StyledRulesContainer data-testid="rules-container">
       <h2>Rules</h2>
       <img src="./img/image-rules.svg" alt="rules" />
       <button onClick={closeContainer}>

@@ -22,14 +22,17 @@ const Choices = ({ style }: { style: any }) => {
   return (
     <StyledGameBoard style={style}>
       <PlayButton
+        data-testid="rock-play-button"
         buttonType={PlayButtonType.ROCK}
         onClick={() => play(PlayButtonType.ROCK)}
       />
       <PlayButton
+        data-testid="paper-play-button"
         buttonType={PlayButtonType.PAPER}
         onClick={() => play(PlayButtonType.PAPER)}
       />
       <PlayButton
+        data-testid="scissors-play-button"
         buttonType={PlayButtonType.SCISSORS}
         onClick={() => play(PlayButtonType.SCISSORS)}
       />
