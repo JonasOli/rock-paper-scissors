@@ -2,7 +2,6 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { act } from "react-dom/test-utils";
 import App from "..";
-import PlayButtonType from "../../Helper/PlayButtonType";
 
 describe("<GameBoard />", () => {
   describe("Test results", () => {
