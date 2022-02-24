@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
-import GameBoard from ".";
+import { act } from "react-dom/test-utils";
+import App from "..";
 
 describe("<GameBoard />", () => {
   describe("Test results", () => {
@@ -8,52 +9,88 @@ describe("<GameBoard />", () => {
       jest.spyOn(global.Math, "floor").mockRestore();
     });
 
+    it("should display that the player won the match when selecting PAPER", async () => {
+      jest.spyOn(global.Math, "floor").mockReturnValue(1);
+
+      await act(async () => {
+        render(<App />);
+
+        const rockPlayButton = screen.getByTestId("paper-play-button");
+
+        fireEvent.click(rockPlayButton);
+
+        await waitFor(
+          async () => {
+            const resultText = screen.getByTestId("result-text");
+
+            expect(resultText.textContent).toEqual("You won");
+          },
+          { timeout: 2500 }
+        );
+      });
+    });
+
+    it("should display that the player won the match when selecting SCISSORS", async () => {
+      jest.spyOn(global.Math, "floor").mockReturnValue(2);
+
+      await act(async () => {
+        render(<App />);
+
+        const rockPlayButton = screen.getByTestId("scissors-play-button");
+
+        fireEvent.click(rockPlayButton);
+
+        await waitFor(
+          async () => {
+            const resultText = screen.getByTestId("result-text");
+
+            expect(resultText.textContent).toEqual("You won");
+          },
+          { timeout: 2500 }
+        );
+      });
+    });
+
     it("should display that the player won the match when selecting ROCK", async () => {
       jest.spyOn(global.Math, "floor").mockReturnValue(3);
 
-      render(<GameBoard />);
+      await act(async () => {
+        render(<App />);
 
-      const rockPlayButton = screen.getByTestId("rock-play-button");
+        const rockPlayButton = screen.getByTestId("rock-play-button");
 
-      fireEvent.click(rockPlayButton);
+        fireEvent.click(rockPlayButton);
 
-      // const resultText = await screen.findByTestId("result-text");
+        await waitFor(
+          async () => {
+            const resultText = screen.getByTestId("result-text");
 
-      // console.log(resultText, "resultText");
-
-      // expect(resultText.innerText).toEqual("You won");
+            expect(resultText.textContent).toEqual("You won");
+          },
+          { timeout: 2500 }
+        );
+      });
     });
 
-    // it("should display that the player won the match when selecting PAPER", async () => {
-    //   jest.spyOn(global.Math, "floor").mockReturnValue(1);
+    it("should update the score when the player win the match", async () => {
+      jest.spyOn(global.Math, "floor").mockReturnValue(1);
 
-    //   render(<App />);
+      await act(async () => {
+        render(<App />);
 
-    //   const paperPlayButton = screen.getByTestId("paper-play-button");
+        const rockPlayButton = screen.getByTestId("paper-play-button");
 
-    //   fireEvent.click(paperPlayButton);
+        fireEvent.click(rockPlayButton);
 
-    //   setTimeout(async () => {
-    //     const resultText = await screen.findByText(/You won/);
+        await waitFor(
+          async () => {
+            const resultText = screen.getByTestId("score-count");
 
-    //     expect(resultText).toBeVisible();
-    //   }, 0);
-    // });
-
-    // it("should display that the player won the match when selecting SCISSORS", async () => {
-    //   jest.spyOn(global.Math, "floor").mockReturnValue(3);
-
-    //   render(<App />);
-
-    //   const paperPlayButton = screen.getByTestId("scissors-play-button");
-
-    //   fireEvent.click(paperPlayButton);
-
-    //   setTimeout(async () => {
-    //     const resultText = await screen.findByText(/You won/);
-
-    //     expect(resultText).toBeVisible();
-    //   }, 0);
-    // });
+            expect(resultText.textContent).toEqual("1");
+          },
+          { timeout: 2500 }
+        );
+      });
+    });
   });
 });

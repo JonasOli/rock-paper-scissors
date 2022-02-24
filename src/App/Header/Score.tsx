@@ -34,7 +34,9 @@ const Score = () => {
   return (
     <StyledScore>
       <h2 className="score-title">Score</h2>
-      <div className="score-count">{score}</div>
+      <div className="score-count" data-testid="score-count">
+        {score}
+      </div>
     </StyledScore>
   );
 };
