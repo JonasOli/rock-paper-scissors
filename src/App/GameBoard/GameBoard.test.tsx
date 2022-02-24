@@ -2,11 +2,33 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { act } from "react-dom/test-utils";
 import App from "..";
+import PlayButtonType from "../../Helper/PlayButtonType";
 
 describe("<GameBoard />", () => {
   describe("Test results", () => {
     afterEach(() => {
       jest.spyOn(global.Math, "floor").mockRestore();
+    });
+
+    it("should display draw when the selected option is the same", async () => {
+      jest.spyOn(global.Math, "floor").mockReturnValue(1);
+
+      await act(async () => {
+        render(<App />);
+
+        const rockPlayButton = screen.getByTestId("rock-play-button");
+
+        fireEvent.click(rockPlayButton);
+
+        await waitFor(
+          async () => {
+            const resultText = screen.getByTestId("result-text");
+
+            expect(resultText.textContent).toEqual("Draw");
+          },
+          { timeout: 2500 }
+        );
+      });
     });
 
     it("should display that the player won the match when selecting PAPER", async () => {
