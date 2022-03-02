@@ -19,22 +19,26 @@ const StyledGameBoard = animated(styled.div`
 const Choices = ({ style }: { style: any }) => {
   const { play } = useContext(AppContext);
 
+  function handleClick(choice: PlayButtonType) {
+    return () => play(choice);
+  }
+
   return (
     <StyledGameBoard style={style}>
       <PlayButton
         data-testid="rock-play-button"
         buttonType={PlayButtonType.ROCK}
-        onClick={() => play(PlayButtonType.ROCK)}
+        onClick={handleClick(PlayButtonType.ROCK)}
       />
       <PlayButton
         data-testid="paper-play-button"
         buttonType={PlayButtonType.PAPER}
-        onClick={() => play(PlayButtonType.PAPER)}
+        onClick={handleClick(PlayButtonType.PAPER)}
       />
       <PlayButton
         data-testid="scissors-play-button"
         buttonType={PlayButtonType.SCISSORS}
-        onClick={() => play(PlayButtonType.SCISSORS)}
+        onClick={handleClick(PlayButtonType.SCISSORS)}
       />
     </StyledGameBoard>
   );
